@@ -41,7 +41,12 @@ BENCHMARK_TYPES = [
     "dummy-tools_2_14",
     "text-tools_2_14",
 ]
-DEFAULT_BUCKET = "lava"
+
+# Get S3 config from environment
+S3_HOST = os.getenv("S3_HOST"))
+S3_BUCKET = os.getenv("S3_BUCKET"))
+S3_ACCESS_KEY = os.getenv("S3_ACCESS_KEY"))
+S3_SECRET_KEY = os.getenv("S3_SECRET_KEY"))
 
 invalid_commits = {
     "ec9a9794af488a9accce7708a8b0d8188b498789",  # Does not build
@@ -137,7 +142,7 @@ def get_client():
     Return minio client configured.
     """
     return Minio(
-        "obj.internal.efficios.com", access_key="jenkins", secret_key="echo123456"
+        S3_HOST, access_key=S3_ACCESS_KEY, secret_key=S3_SECRET_KEY
     )
 
 
@@ -149,7 +154,7 @@ def get_file(client, prefix, file_name, workdir_name):
     destination = os.path.join(workdir_name, file_name)
     object_name = "{}/{}".format(prefix, file_name)
     try:
-        client.fget_object(DEFAULT_BUCKET, object_name, destination)
+        client.fget_object(S3_BUCKET, object_name, destination)
     except NoSuchKey:
         return None
 
@@ -162,7 +167,7 @@ def delete_file(client, prefix, file_name):
     """
     object_name = "{}/{}".format(prefix, file_name)
     try:
-        client.remove_object(DEFAULT_BUCKET, object_name)
+        client.remove_object(S3_BUCKET, object_name)
     except ResponseError as err:
         print(err)
     except NoSuchKey:

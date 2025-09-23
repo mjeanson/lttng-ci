@@ -1,19 +1,6 @@
 #!/bin/bash
-#
-# Copyright (C) 2019 Jonathan Rajotte-Julien <jonathan.rajotte-julien@efficios.com>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# SPDX-FileCopyrightText: 2019 Jonathan Rajotte-Julien <jonathan.rajotte-julien@efficios.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 set -exu
 
@@ -38,7 +25,7 @@ function setup_env ()
     mkdir -p "$RESULTS_DIR"
     virtualenv --python python3 "$VENV"
     set +u
-    # shellcheck disable=SC1090
+    # shellcheck disable=SC1091
     . "${VENV}/bin/activate"
     set -u
     pip install -r "$REQUIREMENT_PATH"

@@ -26,6 +26,10 @@
           - text:
               credential-id: jenkins_lava2_key
               variable: LAVA2_JENKINS_TOKEN
+          - username-password-separated:
+              credential-id: s3_obj_lava_key
+              username: S3_ACCESS_KEY
+              password: S3_SECRET_KEY
 
     triggers:
       - timed: '@daily'
@@ -56,6 +60,14 @@
       - string:
           name: 'NFS_ROOT_URL'
           default: 'https://obj-lava.internal.efficios.com/rootfs/rootfs_amd64_bookworm_2024-01-15.tar.gz'
+      - string:
+          name: 'S3_HOST'
+          description: 'Host for the s3 object storage'
+          default: 'obj2.internal.efficios.com'
+      - string:
+          name: 'S3_BUCKET'
+          description: 'Bucket for the s3 object storage'
+          default: 'lava'
 
     publishers:
       - archive:

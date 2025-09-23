@@ -61,11 +61,11 @@ def submit(
     nfsrootfs="https://obj-lava.internal.efficios.com/rootfs/rootfs_amd64_xenial_2018-12-05.tar.gz",
 ):
     kernel_url = (
-        "https://obj.internal.efficios.com/lava/kernel/{}.baremetal.bzImage".format(
+        "https://obj-lava.internal.efficios.com/kernel/{}.baremetal.bzImage".format(
             kernel_commit
         )
     )
-    modules_url = "https://obj.internal.efficios.com/lava/modules/linux/{}.baremetal.linux.modules.tar.gz".format(
+    modules_url = "https://obj-lava.internal.efficios.com/modules/linux/{}.baremetal.linux.modules.tar.gz".format(
         kernel_commit
     )
 
