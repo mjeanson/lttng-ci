@@ -139,6 +139,8 @@ secret_key = $S3_SECRET_KEY
 # Enable S3 v4 signature APIs
 signature_v2 = False" > "$S3CMD_CONFIG"
 
+print_header "Check for pre-built artifacts"
+
 if ! s3cmd -c "$S3CMD_CONFIG" info "s3://$S3_KERNEL_IMAGE"; then
   NEED_KERNEL_BUILD=1
   # We need to build the lttng modules if the kernel has changed.
