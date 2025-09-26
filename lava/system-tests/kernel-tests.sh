@@ -67,6 +67,9 @@ function test_timeout
     return "${?}"
 }
 
+# Move the home directory to the local disk so we don't run the test suite on NFS
+cp -pr /root /tmp/
+export HOME=/tmp/root
 
 export TMPDIR="/tmp"
 
