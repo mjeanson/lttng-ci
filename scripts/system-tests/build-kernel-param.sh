@@ -223,7 +223,7 @@ if [ $NEED_MODULES_BUILD -eq 1 ] ; then
     # The resulting tarball will contain both lttng-modules and linux modules needed
     # for testing
     s3cmd -c "$S3CMD_CONFIG" get "s3://$S3_LINUX_MODULES"
-    tar -xvzf "$(basename "$S3_LINUX_MODULES")" -C "$MODULES_INSTALL_DIR"
+    tar -xvf "$(basename "$S3_LINUX_MODULES")" -C "$MODULES_INSTALL_DIR"
 
     tar -cJf "$OUTPUTDIR/$BUILD_NAME.lttng.modules.tar.xz" -C "$MODULES_INSTALL_DIR/" lib/
 
